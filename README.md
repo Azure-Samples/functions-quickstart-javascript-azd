@@ -20,10 +20,21 @@ This repository contains a Azure Functions HTTP trigger quickstart written in Ja
 
 ### Prerequisites
 
-1) [Node.js 20](https://www.nodejs.org/) 
-2) [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local?tabs=v4%2Cmacos%2Ccsharp%2Cportal%2Cbash#install-the-azure-functions-core-tools)
-3) [Azure Developer CLI (AZD)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
-4) [Visual Studio Code](https://code.visualstudio.com/) - Only required if using VS Code to run locally
++ [Node.js 20](https://www.nodejs.org/)
++ [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local#install-the-azure-functions-core-tools)
++ [Azure Developer CLI (AZD)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
++ [Visual Studio Code](https://code.visualstudio.com/)
+  + Needed only when using Visual Studio Code to run and debug locally.
+  + Also requires the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
++ One of these HTTP test tools for sending HTTP POST requests to the URL endpoint:
+  + [Visual Studio Code](https://code.visualstudio.com/download) with an [extension from Visual Studio Marketplace](https://marketplace.visualstudio.com/vscode)
+  + [PowerShell Invoke-RestMethod](/powershell/module/microsoft.powershell.utility/invoke-restmethod)
+  + [Microsoft Edge - Network Console tool](/microsoft-edge/devtools-guide-chromium/network-console/network-console-tool)
+  + [Bruno](https://www.usebruno.com/)
+  + [curl](https://curl.se/)
+    
+  > [!CAUTION]  
+  > For scenarios where you have sensitive data, such as credentials, secrets, access tokens, API keys, and other similar information, make sure to use a tool that protects your data with the necessary security features, works offline or locally, doesn't sync your data to the cloud, and doesn't require that you sign in to an online account. This way, you reduce the risk around exposing sensitive data to the public.
 
 ### Get repo on your local machine
 Run the following GIT command to clone this repository to your local machine.
@@ -34,40 +45,41 @@ git clone https://github.com/Azure-Samples/functions-quickstart-javascript-azd.g
 ## Run on your local environment
 
 ### Prepare your local environment
+1) Navigate to the new _functions-quickstart-javascript-azd_ folder.
 1) Create a file named `local.settings.json` and add the following:
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
-    "FUNCTIONS_WORKER_RUNTIME": "node"
-  }
-}
-```
+    ```json
+    {
+      "IsEncrypted": false,
+      "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "node"
+      }
+    }
+    ```
 
 ### Using Functions CLI
-1) Open this folder in a new terminal and run the following commands:
+1) Open the _functions-quickstart-javascript-azd_ folder in a new terminal and run the following commands:
 
-```bash
-npm install
-func start
-```
+    ```bash
+    npm install
+    func start
+    ```
+  You should see the URL endpoints for the two HTTP triggered functions in the output.
 
-2) Test the HTTP GET trigger using the browser to open http://localhost:7071/api/httpGetFunction
+2) Test the HTTP GET trigger by opening the <http://localhost:7071/api/httpGetFunction> link in your browser or HTTP test tool.
 
-3) Test the HTTP POST trigger in a new terminal window with the following command, or use your favorite REST client, e.g. [RestClient in VS Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client), PostMan, curl. `test.http` has been provided to run this quickly.
-
-```bash
-curl -i -X POST http://localhost:7071/api/httppostbodyfunction -H "Content-Type: text/json" --data-binary "@src/functions/testdata.json"
-```
+3) Test the HTTP POST trigger in a new terminal window using your HTTP test tool, such as this curl command:
+   
+    ```bash
+    curl -i -X POST http://localhost:7071/api/httppostbodyfunction -H "Content-Type: text/json" --data-binary "@src/functions/testdata.json"
+    ```
 
 ### Using Visual Studio Code
 1) Open this folder in a new terminal
-2) Open VS Code by entering `code .` in the terminal
-3) Make sure the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) is installed
+2) Open Visual Studio Code by running `code .` in the terminal
 4) Add required files to the `.vscode` folder by opening the command palette using `Crtl+Shift+P` (or `Cmd+Shift+P` on Mac) and selecting *"Azure Functions: Initialize project for use with VS Code"*
 5) Press Run/Debug (F5) to run in the debugger (select "Debug anyway" if prompted about local emulater not running) 
-6) Use same approach above to test using an HTTP REST client
+6) Use same approach above to test using an HTTP test extension in Visual Studio Code.
 
 ## Source Code
 
@@ -130,4 +142,8 @@ To provision the dependent resources and deploy the Function app run the followi
 ```bash
 azd up
 ```
-You will be prompted for an environment name (this is a friendly name for storing AZD parameters), a Azure subscription, and an Aure location.
+You're prompted for an environment name (this is a friendly name for storing azd parameters), your Azure subscription, and the location of an Azure region in which to create the resource group.
+
+## Clean up resources
+
+When you're done with your deployment and to avoid incurring further costs, use the `azd down` command to delete the resource group and all its contained resources that you created using `azd up`.
