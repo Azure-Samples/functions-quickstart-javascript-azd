@@ -26,7 +26,7 @@ This repository contains a Azure Functions HTTP trigger quickstart written in Ja
 + [Visual Studio Code](https://code.visualstudio.com/)
   + Needed only when using Visual Studio Code to run and debug locally.
   + Also requires the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
-+ An HTTP test tool that keeps your data secure. For more information, see [HTTP test tools](https://learn.microsoft.com/azure/azure-functions/functions-develop-local#http-test-tools).
++ An HTTP test tool that keeps your data secure. This article uses the `curl` tool. For more information, see [HTTP test tools](https://learn.microsoft.com/azure/azure-functions/functions-develop-local#http-test-tools).
 
 ### Get repo on your local machine
 Run the following GIT command to clone this repository to your local machine.
