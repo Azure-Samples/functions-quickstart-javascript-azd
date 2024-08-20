@@ -26,15 +26,7 @@ This repository contains a Azure Functions HTTP trigger quickstart written in Ja
 + [Visual Studio Code](https://code.visualstudio.com/)
   + Needed only when using Visual Studio Code to run and debug locally.
   + Also requires the [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
-+ One of these HTTP test tools for sending HTTP POST requests to the URL endpoint:
-  + [Visual Studio Code](https://code.visualstudio.com/download) with an [extension from Visual Studio Marketplace](https://marketplace.visualstudio.com/vscode)
-  + [PowerShell Invoke-RestMethod](/powershell/module/microsoft.powershell.utility/invoke-restmethod)
-  + [Microsoft Edge - Network Console tool](/microsoft-edge/devtools-guide-chromium/network-console/network-console-tool)
-  + [Bruno](https://www.usebruno.com/)
-  + [curl](https://curl.se/)
-    
-  > [!CAUTION]  
-  > For scenarios where you have sensitive data, such as credentials, secrets, access tokens, API keys, and other similar information, make sure to use a tool that protects your data with the necessary security features, works offline or locally, doesn't sync your data to the cloud, and doesn't require that you sign in to an online account. This way, you reduce the risk around exposing sensitive data to the public.
++ An HTTP test tool that keeps your data secure. For more information, see [HTTP test tools](https://learn.microsoft.com/azure/azure-functions/functions-develop-local#http-test-tools).
 
 ### Get repo on your local machine
 Run the following GIT command to clone this repository to your local machine.
