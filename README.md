@@ -16,7 +16,7 @@ urlFragment: functions-quickstart-javascript-azd
 
 # Azure Functions JavaScript HTTP Trigger using Azure Developer CLI
 
-This repository contains an Azure Functions HTTP trigger quickstart written in JavaScript and deployed to Azure using Azure Developer CLI (`azd`). The sample uses managed identity and a virtual network to make sure deployment is secure by default.
+This repository contains an Azure Functions HTTP trigger reference sample written in JavaScript and deployed to Azure using Azure Developer CLI (`azd`). The sample uses managed identity and a virtual network to make sure deployment is secure by default.
 
 ## Prerequisites
 
