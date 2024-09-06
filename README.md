@@ -22,7 +22,7 @@ This repository contains an Azure Functions HTTP trigger reference sample writte
 
 + [Node.js 20](https://www.nodejs.org/) 
 + [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local?pivots=programming-language-javascript#install-the-azure-functions-core-tools)
-+ [Azure Developer CLI (AZD)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
++ [Azure Developer CLI (`azd`)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
 + To use Visual Studio Code to run and debug locally:
   + [Visual Studio Code](https://code.visualstudio.com/)
   + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
@@ -64,20 +64,22 @@ Add a file named `local.settings.json` in the root of your project with the foll
 
 ## Run your app from the terminal
 
-1. Run these commands in the virtual environment:
+1. Run these commands to start the Functions host locally:
 
     ```shell
     npm install
     func start
     ```
 
-2. From your HTTP test tool in a new terminal (or from your browser), call the HTTP GET endpoint: <http://localhost:7071/api/httpget>
+1. From your HTTP test tool in a new terminal (or from your browser), call the HTTP GET endpoint: <http://localhost:7071/api/httpget>
 
-3. Test the HTTP POST trigger with a payload using your favorite secure HTTP test tool. This example uses the `curl` tool with payload data from the [`testdata.json`](./src/functions/testdata.json) project file:
+1. Test the HTTP POST trigger with a payload using your favorite secure HTTP test tool. This example uses the `curl` tool with payload data from the [`testdata.json`](./src/functions/testdata.json) project file:
 
     ```shell
     curl -i http://localhost:7071/api/httppost -H "Content-Type: text/json" -d "@src/functions/testdata.json"
     ```
+
+1. When you're done, press Ctrl+C in the terminal window to stop the `func.exe` host process.
 
 ## Run your app using Visual Studio Code
 
@@ -88,7 +90,7 @@ Add a file named `local.settings.json` in the root of your project with the foll
 
 ## Source Code
 
-The source code for the GET and POST functions are in the [`httpGetFunction.js`](./src/functions/httpGetFunction.js) and [`httpPostBodyFunction.js`](./src/functions/httpPostBodyFunction.js) code files, respectively. Azure Functions requires the use of the `@azure/functions` library.
+The source code for the GET and POST functions is in the [`httpGetFunction.js`](./src/functions/httpGetFunction.js) and [`httpPostBodyFunction.js`](./src/functions/httpPostBodyFunction.js) code files, respectively. Azure Functions requires the use of the `@azure/functions` library.
 
 This code shows an HTTP GET triggered function:
 
