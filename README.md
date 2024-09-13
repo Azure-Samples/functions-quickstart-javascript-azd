@@ -28,6 +28,7 @@ This source code supports the article [Quickstart: Create and deploy functions t
 + To use Visual Studio Code to run and debug locally:
   + [Visual Studio Code](https://code.visualstudio.com/)
   + [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
++ An HTTP test tool that keeps your data secure. This article uses the `curl` tool. For more information, see [HTTP test tools](https://learn.microsoft.com/azure/azure-functions/functions-develop-local#http-test-tools).
 
 ## Initialize the local project
 
