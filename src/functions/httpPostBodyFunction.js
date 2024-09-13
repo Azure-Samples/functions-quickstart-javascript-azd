@@ -1,6 +1,6 @@
 const { app } = require('@azure/functions');
 
-app.http('httpPostBodyFunction', {
+app.http('httppost', {
     methods: ['POST'],
     authLevel: 'function',
     handler: async (request, context) => {

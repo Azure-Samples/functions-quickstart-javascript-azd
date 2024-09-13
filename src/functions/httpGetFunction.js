@@ -1,6 +1,6 @@
 const { app } = require('@azure/functions');
 
-app.http('httpGetFunction', {
+app.http('httpget', {
     methods: ['GET'],
     authLevel: 'function',
     handler: async (request, context) => {
