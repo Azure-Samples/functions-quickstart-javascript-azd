@@ -2,9 +2,9 @@
 
 name: functions-quickstart-javascript-azd
 metadata:
-  template: functions-quickstart-javascript-azd@0.0.2-beta
+  template: functions-quickstart-javascript-azd@1.0.1
 services:
-  processor:
+  api:
     project: .
     language: js
     host: function
