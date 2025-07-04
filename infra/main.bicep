@@ -85,7 +85,7 @@ module apiUserAssignedIdentity 'br/public:avm/res/managed-identity/user-assigned
 }
 
 // Create an App Service Plan to group applications under the same payment plan and SKU
-module appServicePlan 'br/public:avm/res/web/serverfarm:0.1.1' = {
+module appServicePlan 'br/public:avm/res/web/serverfarm:0.4.1' = {
   name: 'appserviceplan'
   scope: rg
   params: {
@@ -125,7 +125,7 @@ module api './app/api.bicep' = {
 }
 
 // Backing storage for Azure functions backend API
-module storage 'br/public:avm/res/storage/storage-account:0.8.3' = {
+module storage 'br/public:avm/res/storage/storage-account:0.9.1' = {
   name: 'storage'
   scope: rg
   params: {
@@ -202,7 +202,7 @@ module storagePrivateEndpoint 'app/storage-PrivateEndpoint.bicep' = if (vnetEnab
 }
 
 // Monitor application with Azure Monitor - Log Analytics and Application Insights
-module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.11.1' = {
+module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.9.1' = {
   name: '${uniqueString(deployment().name, location)}-loganalytics'
   scope: rg
   params: {

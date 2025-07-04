@@ -22,7 +22,7 @@ var queuePrivateDNSZoneName = 'privatelink.queue.${environment().suffixes.storag
 var tablePrivateDNSZoneName = 'privatelink.table.${environment().suffixes.storage}'
 
 // AVM module for Blob Private Endpoint with private DNS zone
-module blobPrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.11.0' = if (enableBlob) {
+module blobPrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.9.1' = if (enableBlob) {
   name: 'blob-private-endpoint-deployment'
   params: {
     name: 'blob-private-endpoint'
@@ -55,7 +55,7 @@ module blobPrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.11.0' =
 }
 
 // AVM module for Queue Private Endpoint with private DNS zone
-module queuePrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.11.0' = if (enableQueue) {
+module queuePrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.9.1' = if (enableQueue) {
   name: 'queue-private-endpoint-deployment'
   params: {
     name: 'queue-private-endpoint'
@@ -88,7 +88,7 @@ module queuePrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.11.0' 
 }
 
 // AVM module for Table Private Endpoint with private DNS zone
-module tablePrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.11.0' = if (enableTable) {
+module tablePrivateEndpoint 'br/public:avm/res/network/private-endpoint:0.9.1' = if (enableTable) {
   name: 'table-private-endpoint-deployment'
   params: {
     name: 'table-private-endpoint'
