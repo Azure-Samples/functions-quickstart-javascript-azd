@@ -131,12 +131,12 @@ module storage 'br/public:avm/res/storage/storage-account:0.8.3' = {
   params: {
     name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
     allowBlobPublicAccess: false
-    allowSharedKeyAccess: false // Disable local authentication methods as per policy
+    allowSharedKeyAccess: true // Enable for Function Apps deployment and runtime operations
     dnsEndpointType: 'Standard'
     publicNetworkAccess: vnetEnabled ? 'Disabled' : 'Enabled'
     networkAcls: vnetEnabled ? {
       defaultAction: 'Deny'
-      bypass: 'None'
+      bypass: 'AzureServices'
     } : {
       defaultAction: 'Allow'
       bypass: 'AzureServices'

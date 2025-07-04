@@ -36,7 +36,7 @@ module virtualNetwork 'br/public:avm/res/network/virtual-network:0.6.1' = {
         addressPrefix: '10.0.2.0/24'
         privateEndpointNetworkPolicies: 'Disabled'
         privateLinkServiceNetworkPolicies: 'Enabled'
-        delegation: 'Microsoft.App/environments'
+        delegation: 'Microsoft.Web/serverFarms'
       }
     ]
   }
