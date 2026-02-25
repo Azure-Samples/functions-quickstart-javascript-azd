@@ -62,7 +62,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' existing
 }
 
 // Create a Flex Consumption Function App to host the API
-module api 'br/public:avm/res/web/site:0.15.1' = {
+module api 'br/public:avm/res/web/site:0.22.0' = {
   name: '${serviceName}-flex-consumption'
   params: {
     kind: kind
@@ -99,8 +99,13 @@ module api 'br/public:avm/res/web/site:0.15.1' = {
     siteConfig: {
       alwaysOn: false
     }
-    virtualNetworkSubnetId: !empty(virtualNetworkSubnetId) ? virtualNetworkSubnetId : null
-    appSettingsKeyValuePairs: allAppSettings
+    virtualNetworkSubnetResourceId: !empty(virtualNetworkSubnetId) ? virtualNetworkSubnetId : null
+    configs: [
+      {
+        name: 'appsettings'
+        properties: allAppSettings
+      }
+    ]
   }
 }
 

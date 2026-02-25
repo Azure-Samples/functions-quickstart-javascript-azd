@@ -74,7 +74,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 
 // User assigned managed identity to be used by the function app to reach storage and other dependencies
 // Assign specific roles to this identity in the RBAC module
-module apiUserAssignedIdentity 'br/public:avm/res/managed-identity/user-assigned-identity:0.4.1' = {
+module apiUserAssignedIdentity 'br/public:avm/res/managed-identity/user-assigned-identity:0.5.0' = {
   name: 'apiUserAssignedIdentity'
   scope: rg
   params: {
@@ -85,7 +85,7 @@ module apiUserAssignedIdentity 'br/public:avm/res/managed-identity/user-assigned
 }
 
 // Create an App Service Plan to group applications under the same payment plan and SKU
-module appServicePlan 'br/public:avm/res/web/serverfarm:0.1.1' = {
+module appServicePlan 'br/public:avm/res/web/serverfarm:0.7.0' = {
   name: 'appserviceplan'
   scope: rg
   params: {
@@ -125,18 +125,18 @@ module api './app/api.bicep' = {
 }
 
 // Backing storage for Azure functions backend API
-module storage 'br/public:avm/res/storage/storage-account:0.8.3' = {
+module storage 'br/public:avm/res/storage/storage-account:0.31.1' = {
   name: 'storage'
   scope: rg
   params: {
     name: !empty(storageAccountName) ? storageAccountName : '${abbrs.storageStorageAccounts}${resourceToken}'
     allowBlobPublicAccess: false
-    allowSharedKeyAccess: false // Disable local authentication methods as per policy
+    allowSharedKeyAccess: true // Enable for Function Apps deployment and runtime operations
     dnsEndpointType: 'Standard'
     publicNetworkAccess: vnetEnabled ? 'Disabled' : 'Enabled'
     networkAcls: vnetEnabled ? {
       defaultAction: 'Deny'
-      bypass: 'None'
+      bypass: 'AzureServices'
     } : {
       defaultAction: 'Allow'
       bypass: 'AzureServices'
@@ -202,7 +202,7 @@ module storagePrivateEndpoint 'app/storage-PrivateEndpoint.bicep' = if (vnetEnab
 }
 
 // Monitor application with Azure Monitor - Log Analytics and Application Insights
-module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.11.1' = {
+module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.15.0' = {
   name: '${uniqueString(deployment().name, location)}-loganalytics'
   scope: rg
   params: {
@@ -213,7 +213,7 @@ module logAnalytics 'br/public:avm/res/operational-insights/workspace:0.11.1' = 
   }
 }
  
-module monitoring 'br/public:avm/res/insights/component:0.6.0' = {
+module monitoring 'br/public:avm/res/insights/component:0.7.1' = {
   name: '${uniqueString(deployment().name, location)}-appinsights'
   scope: rg
   params: {
