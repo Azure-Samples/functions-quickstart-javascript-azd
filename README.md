@@ -24,7 +24,7 @@ This source code supports the article [Quickstart: Create and deploy functions t
 
 ## Prerequisites
 
-+ [Node.js 20](https://www.nodejs.org/) 
++ [Node.js 22](https://www.nodejs.org/)
 + [Azurite](https://learn.microsoft.com/azure/storage/common/storage-use-azurite) (for local storage emulation)
 + [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local?pivots=programming-language-javascript#install-the-azure-functions-core-tools)
 + [Azure Developer CLI (`azd`)](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd)
@@ -53,10 +53,10 @@ You can initialize a project from this `azd` template in one of these ways:
     ```
 
     You can also clone the repository from your own fork in GitHub.
+
 ## Local settings
 
 The `local.settings.json` file is included in this template with default values for local development. This file is excluded from deployment by `.funcignore`.
-
 
 ## Run your app from the terminal
 
@@ -127,7 +127,7 @@ app.http('httppost', {
             const person = await request.json();
             const { name, age } = person;
 
-            if (!name || !age) {
+            if (!name || age === undefined || age === null) {
                 return {
                     status: 400,
                     body: 'Please provide both name and age in the request body.'
@@ -167,15 +167,15 @@ You're prompted to supply these required deployment parameters:
 
 | Parameter | Description |
 | ---- | ---- |
-| _Environment name_ | An environment that's used to maintain a unique deployment context for your app. You won't be prompted if you created the local project using `azd init`.|
-| _Azure subscription_ | Subscription in which your resources are created.|
-| _Azure location_ | Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown.|
+| _Environment name_ | An environment that's used to maintain a unique deployment context for your app. You won't be prompted if you created the local project using `azd init`. |
+| _Azure subscription_ | Subscription in which your resources are created. |
+| _Azure location_ | Azure region in which to create the resource group that contains the new Azure resources. Only regions that currently support the Flex Consumption plan are shown. |
 
 After publish completes successfully, `azd` provides you with the URL endpoints of your new functions, but without the function key values required to access the endpoints. To learn how to obtain these same endpoints along with the required function keys, see [Invoke the function on Azure](https://learn.microsoft.com/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-javascript#invoke-the-function-on-azure) in the companion article [Quickstart: Create and deploy functions to Azure Functions using the Azure Developer CLI](https://learn.microsoft.com/azure/azure-functions/create-first-function-azure-developer-cli?pivots=programming-language-javascript).
 
 ## Redeploy your code
 
-You can run the `azd up` command as many times as you need to both provision your Azure resources and deploy code updates to your function app. 
+You can run the `azd up` command as many times as you need to both provision your Azure resources and deploy code updates to your function app.
 
 >[!NOTE]
 >Deployed code files are always overwritten by the latest deployment package.
