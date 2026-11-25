@@ -10,7 +10,7 @@ app.http('httppost', {
             const person = await request.json();
             const { name, age } = person;
 
-            if (!name || !age) {
+            if (!name || age === undefined || age === null) {
                 return {
                     status: 400,
                     body: 'Please provide both name and age in the request body.'

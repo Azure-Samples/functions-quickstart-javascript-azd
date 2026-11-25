@@ -58,6 +58,8 @@ param storageAccountName string = ''
 param vNetName string = ''
 @description('Id of the user identity to be used for testing and debugging. This is not required in production. Leave empty if not needed.')
 param principalId string = deployer().objectId
+@allowed(['User', 'ServicePrincipal'])
+param principalType string = 'User'
 
 var abbrs = loadJsonContent('./abbreviations.json')
 var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
@@ -168,6 +170,7 @@ module rbac 'app/rbac.bicep' = {
     appInsightsName: monitoring.outputs.name
     managedIdentityPrincipalId: apiUserAssignedIdentity.outputs.principalId
     userIdentityPrincipalId: principalId
+    userIdentityPrincipalType: principalType
     enableBlob: storageEndpointConfig.enableBlob
     enableQueue: storageEndpointConfig.enableQueue
     enableTable: storageEndpointConfig.enableTable
@@ -226,7 +229,6 @@ module monitoring 'br/public:avm/res/insights/component:0.6.0' = {
 }
 
 // App outputs
-output APPLICATIONINSIGHTS_CONNECTION_STRING string = monitoring.outputs.connectionString
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenant().tenantId
 output SERVICE_API_NAME string = api.outputs.SERVICE_API_NAME
